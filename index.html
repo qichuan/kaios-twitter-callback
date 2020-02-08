@@ -4,7 +4,7 @@
 
 function callback() {
   // Get query params
-  var urlParams = new URLSearchParams(window.location.search);
+  var urlParams = new URLSearchParams(window.location.search.substring(1));
   const oAuthToken = urlParams.get('oauth_token');
   const oAuthVerifier = urlParams.get('oauth_verifier');
 
