@@ -5,18 +5,20 @@
 function callback() {
   // Get query params
   var urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('oauth_token');
-  const verifier = urlParams.get('oauth_verifier');
+  const oAuthToken = urlParams.get('oauth_token');
+  const oAuthVerifier = urlParams.get('oauth_verifier');
+
+  if (oAuthToken != null && oAuthVerifier != null) {
   
-  // Send the params to tweetFit app
-  var activity = new MozActivity({             
-    name: "tweetFitcallback",
-    data : {
-      token: token,
-      verifier: verifier
-    }
-  });
-  
+    // Send the params to tweetFit app
+    var activity = new MozActivity({             
+      name: "tweetFitcallback",
+      data : {
+        token: oAuthToken,
+        verifier: oAuthVerifier
+      }
+    });
+  }  
 }
 </script>
 </head>
