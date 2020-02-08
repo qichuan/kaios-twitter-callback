@@ -1,15 +1,22 @@
 <html>
 <head>
 <script type="text/javascript">
-/**
- * call parent window function and close
- */
+
 function callback() {
-  //alert('hello');  
-  //window.close();
+  // Get query params
+  var urlParams = new URLSearchParams(location.search);
+  const token = urlParams.get('oauth_token');
+  const verifier = urlParams.get('oauth_verifier');
+  
+  // Send the params to tweetFit app
   var activity = new MozActivity({             
-    name: "tweetFitcallback"
+    name: "tweetFitcallback",
+    data : {
+      token: token,
+      verifier: verifier
+    }
   });
+  
 }
 </script>
 </head>
