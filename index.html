@@ -5,8 +5,11 @@
  * call parent window function and close
  */
 function callback() {
-alert('hello');  
-//    window.close();
+  //alert('hello');  
+  //window.close();
+  var activity = new MozActivity({             
+    name: "tweetFitcallback"
+  });
 }
 </script>
 </head>
