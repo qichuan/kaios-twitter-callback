@@ -9,15 +9,37 @@ function callback() {
   const oAuthVerifier = urlParams.get('oauth_verifier');
 
   if (oAuthToken != null && oAuthVerifier != null) {
-  
-    // Send the params to tweetFit app
-    var activity = new MozActivity({             
-      name: "tweetFitcallback",
-      data : {
-        token: oAuthToken,
-        verifier: oAuthVerifier
+    // For KaiOS 2.5
+    if (typeof MozActivity !== 'undefined') {
+      // Send the params to tweetFit app
+      var activity = new MozActivity({             
+        name: "tweetFitcallback",
+        data : {
+          token: oAuthToken,
+          verifier: oAuthVerifier
+        }
+      });
+    } else {
+      // For KaiOS 3.0
+      if (typeof WebActivity !== 'undefined') {
+        var activity = new WebActivity('tweetFitcallback', {
+          type: 'data',
+          data: {
+            token: oAuthToken,
+            verifier: oAuthVerifier
+          },
+        });
+        activity.start().then(
+          rv => {
+            console.log("Results passed back from activity handler:")
+            console.log(rv);
+          },  
+          err => {
+            console.log(err);
+          }
+        );
       }
-    });
+    }
   }  
 }
 </script>
