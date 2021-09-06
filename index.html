@@ -23,8 +23,8 @@ function callback() {
       // For KaiOS 3.0
       if (typeof WebActivity !== 'undefined') {
         var activity = new WebActivity('tweetFitcallback', {
-          type: 'data',
-          data: {
+          type: 'token',
+          token: {
             token: oAuthToken,
             verifier: oAuthVerifier
           },
